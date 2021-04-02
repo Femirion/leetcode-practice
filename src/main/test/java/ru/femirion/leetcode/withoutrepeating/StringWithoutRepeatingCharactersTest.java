@@ -7,14 +7,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class StringWithoutRepeatingCharactersTest {
     @Test
     void shouldHandleMessage() {
-        // given
-        var in = "dvdf";
-
         // when
         var solution = new StringWithoutRepeatingCharacters();
-        var result = solution.lengthOfLongestSubstring(in);
 
         // then
-        assertThat(result).isEqualTo(3);
+        assertThat(solution.lengthOfLongestSubstringFastVersion("abba")).isEqualTo(2);
+        assertThat(solution.lengthOfLongestSubstringFastVersion("bbbbb")).isEqualTo(1);
+        assertThat(solution.lengthOfLongestSubstringFastVersion("abcabcbb")).isEqualTo(3);
+        assertThat(solution.lengthOfLongestSubstringFastVersion("bbtablud")).isEqualTo(6);
     }
 }
