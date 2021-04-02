@@ -1,4 +1,4 @@
-package ru.femirion.leetcode.longestCommonPrefix;
+package ru.femirion.leetcode;
 
 /*
     Write a function to find the longest common prefix string amongst an array of strings.

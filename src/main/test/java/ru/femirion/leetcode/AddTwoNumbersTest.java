@@ -1,7 +1,6 @@
-package ru.femirion.lettcode.addtwonumbers;
+package ru.femirion.leetcode;
 
 import org.junit.jupiter.api.Test;
-import ru.femirion.leetcode.addtwonumbers.AddTwoNumbers;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 

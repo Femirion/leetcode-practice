@@ -1,4 +1,4 @@
-package ru.femirion.leetcode.withoutrepeating;
+package ru.femirion.leetcode;
 
 import java.util.Arrays;
 import java.util.HashSet;

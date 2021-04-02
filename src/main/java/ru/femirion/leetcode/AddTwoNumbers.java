@@ -1,4 +1,4 @@
-package ru.femirion.leetcode.addtwonumbers;
+package ru.femirion.leetcode;
 
 
 public class AddTwoNumbers {
