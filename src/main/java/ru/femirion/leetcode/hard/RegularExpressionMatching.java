@@ -66,47 +66,41 @@ public class RegularExpressionMatching {
         }
 
         List<SafePoint> safePoints = new ArrayList<>();
-        int currentExpressionPosition = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (expressionSize - 1 < currentExpressionPosition) {
-                return false;
+        int currentPosition = 0;
+        char currentSymbol = 0;
+        for (int i = 0; i < expressionSize; i++) {
+            Expression expression = expressions[i];
+            if (currentPosition < s.length()) {
+                currentSymbol = s.charAt(currentPosition);
+            } else {
+                currentSymbol = 0;
             }
 
-            Expression expression = expressions[currentExpressionPosition];
-            char currentSymbol = s.charAt(i);
-
             if (expression.exp == '*') {
-                if (expression.symbol == '.' || expression.symbol == currentSymbol) {
-                    if (s.length() == i + 1 && currentExpressionPosition + 1 != expressionSize) {
-                        var safePoint = safePoints.remove(safePoints.size() - 1);
-                        i = safePoint.currentPosition;
-                        currentExpressionPosition = safePoint.expressionPosition + 1;
-                        continue;
-                    }
-
-                    safePoints.add(new SafePoint(currentExpressionPosition, i));
+                if ((expression.symbol == '.' && currentSymbol != 0) || expression.symbol == currentSymbol) {
+                    safePoints.add(new SafePoint(i, currentPosition));
+                    currentPosition++;
+                    i--;
                     continue;
                 }
 
                 if (safePoints.size() == 0 && expression.symbol != currentSymbol) {
-                    currentExpressionPosition++;
-                    i--;
+//                    if (currentPosition == s.length()) {
+//                        continue;
+//                    }
                     continue;
                 }
 
                 if (expression.symbol != currentSymbol) {
                     var safePoint = safePoints.remove(safePoints.size() - 1);
-                    i = safePoint.currentPosition;
-                    currentExpressionPosition = safePoint.expressionPosition + 1;
+                    i = safePoint.expressionPosition;
+                    currentPosition = safePoint.currentPosition + 1;
                 }
                 continue;
             }
 
             if (expression.symbol == '.') {
-                if (s.length() == i + 1) {
-                    break;
-                }
-                currentExpressionPosition++;
+                currentPosition++;
                 continue;
             }
 
@@ -114,33 +108,15 @@ public class RegularExpressionMatching {
                 if (safePoints.size() == 0) {
                     return false;
                 }
-                var safePoint = safePoints.get(safePoints.size() - 1);
-                i = safePoint.currentPosition;
-
-                if (s.length() == i + 1) {
-                    break;
-                }
-
-                currentExpressionPosition++;
+                var safePoint = safePoints.remove(safePoints.size() - 1);
+                i = safePoint.expressionPosition;
+                currentPosition = safePoint.currentPosition + 1;
             } else {
-                if (s.length() == i + 1) {
-                    break;
-                }
-                currentExpressionPosition++;
+                currentPosition++;
             }
         }
 
-        boolean onlyStarts = true;
-        if (currentExpressionPosition + 1 != expressionSize) {
-            for (int i = currentExpressionPosition + 1; i < expressionSize; i++) {
-                var expression = expressions[i];
-                if (expression.exp != '*') {
-                    onlyStarts = false;
-                }
-            }
-            if (onlyStarts) {
-                return true;
-            }
+        if (currentPosition < s.length()) {
             return false;
         }
 

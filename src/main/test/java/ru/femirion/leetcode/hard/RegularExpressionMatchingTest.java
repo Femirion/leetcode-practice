@@ -30,6 +30,7 @@ class RegularExpressionMatchingTest {
         assertThat(solution.isMatch("ab", ".*")).isTrue();
         assertThat(solution.isMatch("ab", ".*c")).isFalse();
         assertThat(solution.isMatch("aa", "a*")).isTrue();
-        assertThat(solution.isMatch("ab", ".*c")).isFalse();
+        assertThat(solution.isMatch("ab", "ab")).isTrue();
+        assertThat(solution.isMatch("bbbba", ".*a*a")).isTrue();
     }
 }
