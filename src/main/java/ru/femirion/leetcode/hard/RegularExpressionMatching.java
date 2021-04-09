@@ -51,19 +51,31 @@ public class RegularExpressionMatching {
         for (int i = 0; i < p.length(); i++) {
             char current = p.charAt(i);
             if (i + 1 >= p.length()) {
-                expressions[expressionSize] = new Expression(current, ' ', expressionSize);
+                expressions[expressionSize] = new Expression(current, ' ');
                 expressionSize++;
                 break;
             }
             char next = p.charAt(i + 1);
             if (next == '*') {
-                expressions[expressionSize] = new Expression(current, '*', expressionSize);
+                expressions[expressionSize] = new Expression(current, '*');
                 i++;
             } else {
-                expressions[expressionSize] = new Expression(current, ' ', expressionSize);
+                expressions[expressionSize] = new Expression(current, ' ');
             }
             expressionSize++;
         }
+
+        int notStarSymbolsCount = 0;
+        for (int i = 0; i < expressionSize; i++) {
+            Expression exp = expressions[i];
+            if (exp.exp != '*') {
+                notStarSymbolsCount++;
+            }
+        }
+        if (notStarSymbolsCount > s.length()) {
+            return false;
+        }
+
 
         List<SafePoint> safePoints = new ArrayList<>();
         int currentPosition = 0;
@@ -73,7 +85,11 @@ public class RegularExpressionMatching {
             if (currentPosition < s.length()) {
                 currentSymbol = s.charAt(currentPosition);
             } else {
-                currentSymbol = 0;
+                if (currentPosition == s.length()) {
+                    currentSymbol = 0;
+                } else {
+                    return false;
+                }
             }
 
             if (expression.exp == '*') {
@@ -84,10 +100,27 @@ public class RegularExpressionMatching {
                     continue;
                 }
 
+                if (expression.symbol == '.' && currentSymbol == 0) {
+                    if (expressionSize == i + 1) {
+                        return true;
+                    }
+                    var safePoint = safePoints.remove(safePoints.size() - 1);
+                    i = safePoint.expressionPosition;
+                    currentPosition = safePoint.currentPosition == 0 ? 0 : safePoint.currentPosition;
+                    continue;
+                }
+
                 if (safePoints.size() == 0 && expression.symbol != currentSymbol) {
-//                    if (currentPosition == s.length()) {
-//                        continue;
-//                    }
+                    continue;
+                }
+
+                if (currentSymbol == 0 && expression.symbol != currentSymbol) {
+                    if (expressionSize == i + 1) {
+                        return true;
+                    }
+                    var safePoint = safePoints.remove(safePoints.size() - 1);
+                    i = safePoint.expressionPosition;
+                    currentPosition = safePoint.currentPosition;
                     continue;
                 }
 
@@ -100,6 +133,15 @@ public class RegularExpressionMatching {
             }
 
             if (expression.symbol == '.') {
+                if (currentSymbol == 0) {
+                    if (expressionSize == i + 1) {
+                        return true;
+                    }
+                    var safePoint = safePoints.remove(safePoints.size() - 1);
+                    i = safePoint.expressionPosition;
+                    currentPosition = safePoint.currentPosition;
+                    continue;
+                }
                 currentPosition++;
                 continue;
             }
@@ -110,7 +152,7 @@ public class RegularExpressionMatching {
                 }
                 var safePoint = safePoints.remove(safePoints.size() - 1);
                 i = safePoint.expressionPosition;
-                currentPosition = safePoint.currentPosition + 1;
+                currentPosition = safePoint.currentPosition;
             } else {
                 currentPosition++;
             }
@@ -126,16 +168,8 @@ public class RegularExpressionMatching {
     private static class Expression {
         private final char symbol;
         private final char exp;
-        private final int number;
 
-        private Expression(char symbol, int number) {
-            this.symbol = symbol;
-            this.exp = 0;
-            this.number = number;
-        }
-
-        private Expression(char symbol, char exp, int number) {
-            this.number = number;
+        private Expression(char symbol, char exp) {
             this.symbol = symbol;
             this.exp = exp;
         }
