@@ -1,10 +1,11 @@
-package ru.femirion.leetcode;
+package ru.femirion.leetcode.medium;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class StringWithoutRepeatingCharacters {
-    /*
+/*
+    https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
     Given a string s, find the length of the longest substring without repeating characters.
 
     Example 1:
@@ -30,13 +31,13 @@ public class StringWithoutRepeatingCharacters {
     Constraints:
     0 <= s.length <= 5 * 104
     s consists of English letters, digits, symbols and spaces.*/
-
+public class StringWithoutRepeatingCharacters {
 
     /*
-    * Runtime: 73 ms, faster than 16.95% of Java online submissions for Longest Substring Without Repeating Characters.
-    * Memory Usage: 40 MB, less than 14.14% of Java online submissions for Longest Substring Without Repeating Characters.
-    *
-    * */
+     * Runtime: 73 ms, faster than 16.95% of Java online submissions for Longest Substring Without Repeating Characters.
+     * Memory Usage: 40 MB, less than 14.14% of Java online submissions for Longest Substring Without Repeating Characters.
+     *
+     * */
     public int lengthOfLongestSubstring(String s) {
         char[] chars = s.toCharArray();
         int max = 0;

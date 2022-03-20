@@ -1,4 +1,4 @@
-package ru.femirion.leetcode;
+package ru.femirion.leetcode.medium;
 
 import org.junit.jupiter.api.Test;
 
