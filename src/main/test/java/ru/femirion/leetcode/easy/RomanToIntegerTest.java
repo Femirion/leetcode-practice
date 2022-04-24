@@ -1,4 +1,4 @@
-package ru.femirion.leetcode.medium;
+package ru.femirion.leetcode.easy;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,5 +15,4 @@ class RomanToIntegerTest {
         assertThat(solution.romanToInt("III")).isEqualTo(3);
         assertThat(solution.romanToInt("MCMXCIV")).isEqualTo(1994);
     }
-
 }

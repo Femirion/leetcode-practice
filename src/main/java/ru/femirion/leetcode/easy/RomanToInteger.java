@@ -1,4 +1,4 @@
-package ru.femirion.leetcode.medium;
+package ru.femirion.leetcode.easy;
 
 /**
  https://leetcode.com/problems/roman-to-integer/
