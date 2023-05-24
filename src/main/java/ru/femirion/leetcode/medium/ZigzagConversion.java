@@ -1,7 +1,5 @@
 package ru.femirion.leetcode.medium;
 
-import java.util.Arrays;
-
 /*
     https://leetcode.com/problems/zigzag-conversion/
 

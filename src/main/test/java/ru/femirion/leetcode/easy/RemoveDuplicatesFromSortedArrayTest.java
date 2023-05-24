@@ -4,15 +4,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class PalindromeNumberTest {
+class RemoveDuplicatesFromSortedArrayTest {
 
     @Test
     void check() {
         // when
-        var solution = new PalindromeNumber();
+        var solution = new RemoveDuplicatesFromSortedArray();
 
         // then
-        assertThat(solution.isPalindrome(1234)).isEqualTo(false);
-//        assertThat(solution.isPalindrome(1221)).isEqualTo(true);
+        int[] x = {1, 2, 2, 2, 2, 3, 4};
+        assertThat(solution.removeDuplicates(x)).isEqualTo(4);
     }
 }
