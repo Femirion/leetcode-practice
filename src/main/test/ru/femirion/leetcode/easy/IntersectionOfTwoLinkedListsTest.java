@@ -9,7 +9,7 @@ class IntersectionOfTwoLinkedListsTest {
 
 
     @Test
-    void addTwoNumbers() {
+    void getIntersectionNode() {
         // given
         //[4,1,8,4,5]
         IntersectionOfTwoLinkedLists.ListNode n1L1 = new IntersectionOfTwoLinkedLists.ListNode(4);
