@@ -6,7 +6,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class NumberOfValidClockTimesTest {
     @Test
-    void shouldHandleMessage() {
+    void countTime() {
         // when
         var solution = new NumberOfValidClockTimes();
 
