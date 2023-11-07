@@ -3,29 +3,9 @@ package ru.femirion.leetcode.easy;
 import java.util.Arrays;
 
 /**
+ * 242. Valid Anagram
+ *
  * https://leetcode.com/problems/valid-anagram/
- * <p>
- * Given two strings s and t, return true if t is an anagram of s, and false otherwise.
- * <p>
- * An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
- * typically using all the original letters exactly once.
- * <p>
- * <p>
- * <p>
- * Example 1:
- * <p>
- * Input: s = "anagram", t = "nagaram"
- * Output: true
- * Example 2:
- * <p>
- * Input: s = "rat", t = "car"
- * Output: false
- * <p>
- * <p>
- * Constraints:
- * <p>
- * 1 <= s.length, t.length <= 5 * 104
- * s and t consist of lowercase English letters.
  */
 public class ValidAnagram {
     public boolean isAnagram(String s, String t) {
