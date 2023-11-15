@@ -79,6 +79,34 @@ public class MergeSimilarItems {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Runtime 3ms Beats 97.85% of users with Java
+     * Memory 45.35MB Beats 6.93% of users with Java
+     */
+    public List<List<Integer>> mergeSimilarItems2(int[][] items1, int[][] items2) {
+        int[] result = new int[1001];
+
+        for (int i = 0; i < items1.length; i++) {
+            result[items1[i][0]] = items1[i][1];
+        }
+
+        for (int i = 0; i < items2.length; i++) {
+            result[items2[i][0]] = result[items2[i][0]] + items2[i][1];
+        }
+
+        List<List<Integer>> resultList = new ArrayList<>();
+        for (int i = 0; i < result.length; i++) {
+            if (result[i] != 0) {
+                List<Integer> list = new ArrayList<>();
+                list.add(i);
+                list.add(result[i]);
+                resultList.add(list);
+            }
+        }
+
+        return resultList;
+    }
+
     private List<Integer> createResultList(int value, int weigh) {
         List<Integer> result = new ArrayList<>();
         result.add(value);

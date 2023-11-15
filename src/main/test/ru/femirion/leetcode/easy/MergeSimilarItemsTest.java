@@ -14,7 +14,7 @@ class MergeSimilarItemsTest {
         var solution = new MergeSimilarItems();
 
         // then
-        assertThat(solution.mergeSimilarItems1(
+        assertThat(solution.mergeSimilarItems2(
                 new int[][]{new int[] {1, 1}, new int[] {4, 5}, new int[] {3, 8}},
                 new int[][]{new int[] {3, 1}, new int[] {1, 5}}
         )).isEqualTo(expected());
