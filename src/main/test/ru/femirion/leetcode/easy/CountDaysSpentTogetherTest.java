@@ -6,7 +6,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class CountDaysSpentTogetherTest {
 
     @Test
-    void addTwoNumbers() {
+    void check() {
         String arriveAlice = "08-06";
         String leaveAlice = "12-08";
         String arriveBob = "02-04";

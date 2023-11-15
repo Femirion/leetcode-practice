@@ -7,7 +7,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class CountSubstringsWithOnlyOneDistinctLetterTest {
 
     @Test
-    void addTwoNumbers() {
+    void check() {
         // when
         var solution = new CountSubstringsWithOnlyOneDistinctLetter();
 

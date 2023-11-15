@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class CountEqualAndDivisiblePairsInAnArrayTest {
+class CellsWithOddValuesInAMatrixTest {
     @Test
     void check() {
         // when
-        var solution = new CountEqualAndDivisiblePairsInAnArray();
+        var solution = new CellsWithOddValuesInAMatrix();
 
         // then
-        assertThat(solution.countPairs(new int[] {3,1,2,2,2,1,3}, 2)).isEqualTo(4);
+        assertThat(solution.oddCells(48, 37, new int[][]{new int[]{40,5}})).isEqualTo(2);
     }
 }

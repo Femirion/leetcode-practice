@@ -6,7 +6,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LargestNumberAtLeastTwiceOfOthersTest {
     @Test
-    void shouldHandleMessage() {
+    void check() {
         // when
         var solution = new LargestNumberAtLeastTwiceOfOthers();
 

@@ -6,7 +6,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class SumOfDigitsOfStringAfterConvertTest {
     @Test
-    void findErrorNums() {
+    void check() {
         // given
         SumOfDigitsOfStringAfterConvert solution = new SumOfDigitsOfStringAfterConvert();
 

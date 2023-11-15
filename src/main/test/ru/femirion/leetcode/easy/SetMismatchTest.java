@@ -6,7 +6,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class SetMismatchTest {
     @Test
-    void findErrorNums() {
+    void check() {
         // given
         int[] errors = {1,2,2,4};
         SetMismatch solution = new SetMismatch();
@@ -20,7 +20,7 @@ class SetMismatchTest {
     }
 
     @Test
-    void findErrorNums2() {
+    void check2() {
         // given
         int[] errors = {2, 2};
         SetMismatch solution = new SetMismatch();
@@ -34,7 +34,7 @@ class SetMismatchTest {
     }
 
     @Test
-    void findErrorNums3() {
+    void check3() {
         // given
         int[] errors = {1, 1};
         SetMismatch solution = new SetMismatch();

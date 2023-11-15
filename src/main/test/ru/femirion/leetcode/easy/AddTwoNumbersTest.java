@@ -8,7 +8,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class AddTwoNumbersTest {
 
     @Test
-    void addTwoNumbers() {
+    void check() {
         // given
         AddTwoNumbers.ListNode l13 = new AddTwoNumbers.ListNode(3, null);
         AddTwoNumbers.ListNode l12 = new AddTwoNumbers.ListNode(4, l13);

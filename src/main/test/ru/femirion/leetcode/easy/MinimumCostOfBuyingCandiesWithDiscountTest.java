@@ -7,7 +7,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class MinimumCostOfBuyingCandiesWithDiscountTest {
 
     @Test
-    void shouldHandleMessage() {
+    void check() {
         // when
         var solution = new MinimumCostOfBuyingCandiesWithDiscount();
 

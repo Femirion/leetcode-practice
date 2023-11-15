@@ -6,7 +6,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LongestCommonPrefixTest {
     @Test
-    void shouldHandleMessage() {
+    void check() {
         // when
         var solution = new LongestCommonPrefix();
 
@@ -17,7 +17,7 @@ class LongestCommonPrefixTest {
         assertThat(solution.longestCommonPrefix(new String[]{"flower","flower","flower","flower"})).isEqualTo("flower");
     }
     @Test
-    void shouldHandleMessageFastVersion() {
+    void checkFastVersion() {
         // when
         var solution = new LongestCommonPrefix();
 

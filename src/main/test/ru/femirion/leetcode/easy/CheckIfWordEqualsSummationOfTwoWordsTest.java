@@ -6,7 +6,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class CheckIfWordEqualsSummationOfTwoWordsTest {
     @Test
-    void countTime() {
+    void check() {
         // when
         var solution = new CheckIfWordEqualsSummationOfTwoWords();
 

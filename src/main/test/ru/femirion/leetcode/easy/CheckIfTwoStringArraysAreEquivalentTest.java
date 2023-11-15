@@ -6,7 +6,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class CheckIfTwoStringArraysAreEquivalentTest {
     @Test
-    void arrayStringsAreEqual() {
+    void check() {
         // when
         var solution = new CheckIfTwoStringArraysAreEquivalent();
 

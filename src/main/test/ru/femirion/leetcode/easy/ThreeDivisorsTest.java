@@ -6,7 +6,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class ThreeDivisorsTest {
     @Test
-    void isThree() {
+    void check() {
         // given
         ThreeDivisors divisors = new ThreeDivisors();
 
