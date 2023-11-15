@@ -17,7 +17,7 @@ class LongestCommonPrefixTest {
         assertThat(solution.longestCommonPrefix(new String[]{"flower","flower","flower","flower"})).isEqualTo("flower");
     }
     @Test
-    void checkFastVersion() {
+    void check2() {
         // when
         var solution = new LongestCommonPrefix();
 
