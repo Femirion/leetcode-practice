@@ -1,5 +1,6 @@
 package ru.femirion.leetcode.easy;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -66,6 +67,28 @@ public class SortArrayByParityII {
             } else {
                 result[i] = oddQueue[oddPointer];
                 oddPointer++;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Runtime 6ms Beats 18.58% of users with Java
+     * Memory 44.80MB Beats 72.19% of users with Java
+     */
+    public int[] sortArrayByParityII2(int[] nums) {
+        int[] result = new int[nums.length];
+
+        Arrays.sort(nums);
+        int evenPointer = 0;
+        int oddPointer = 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 == 0) {
+                result[evenPointer] = nums[i];
+                evenPointer = evenPointer + 2;
+            } else {
+                result[oddPointer] = nums[i];
+                oddPointer = oddPointer + 2;
             }
         }
         return result;
