@@ -1,9 +1,6 @@
 package ru.femirion.leetcode.easy;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 2273. Find Resultant Array After Removing Anagrams
@@ -35,6 +32,48 @@ public class FindResultantArrayAfterRemovingAnagrams {
         }
 
         return result;
+    }
+
+    /**
+     * Runtime 2ms Beats 92.64% of users with Java
+     * Memory 43.80MB Beats 68.47% of users with Java
+     */
+    public List<String> removeAnagrams1(String[] words) {
+        List<String> result = new ArrayList<>();
+
+        int[] word1 = new int[26];
+        int[] word2 = new int[26];
+
+        int p = 1;
+        for (int i = 0; i < words.length; i++) {
+            toSkeleton(words[i], word1);
+            if (p == words.length) {
+                word2 = new int[0];
+            } else {
+                toSkeleton(words[p], word2);
+            }
+
+            if (!Arrays.equals(word1, word2)) {
+                result.add(words[i]);
+                i = p - 1;
+            } else {
+                i--;
+            }
+            p++;
+        }
+
+        return result;
+    }
+
+    private void toSkeleton(String source, int[] result) {
+        for (int i = 0; i < 26; i++) {
+            result[i] = 0;
+        }
+        for (int i = 0; i < source.length(); i++) {
+            char current = source.charAt(i);
+            int index = current - 'a';
+            result[index] = result[index] + 1;
+        }
     }
 
     private Map<Character, Integer> getSkeleton(String word) {
