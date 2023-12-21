@@ -20,4 +20,19 @@ public class NumberOfCommonFactors {
         return result;
     }
 
+    /**
+     * Runtime 0ms Beats 100.00% of users with Java
+     * Memory 40.02MB Beats 6.58%of users with Java
+     */
+    public int commonFactors1(int a, int b) {
+        int result = 0;
+        int min = Math.min(a,b);
+        for (int i = 1; i <= min; i++) {
+            if (a % i == 0 && b % i == 0) {
+                result++;
+            }
+        }
+        return result;
+    }
+
 }
