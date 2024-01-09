@@ -28,4 +28,36 @@ public class ValidPerfectSquare {
         return false;
     }
 
+    /**
+     * Runtime 0ms Beats 100.00%of users with Java
+     * Memory 40.40MB Beats 16.32%of users with Java
+     */
+    public boolean isPerfectSquare2(int num) {
+        if (num == 1) {
+            return true;
+        }
+        long start = 1;
+        long end = num;
+        long current = num / 2;
+        long result;
+
+        while (start <= end) {
+            result = current * current;
+            if (result == num) {
+                return true;
+            }
+            if (result > num) {
+                end = current;
+            } else {
+                start = current;
+            }
+            current = start + ((end - start) / 2);
+            if (end - start == 1) {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
 }
