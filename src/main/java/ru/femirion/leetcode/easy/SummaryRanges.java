@@ -13,6 +13,8 @@ public class SummaryRanges {
     /**
      * Runtime 6 ms  Beats 44.51% of users with Java
      * Memory 41.61 MB Beats 41.01% of users with Java
+     *
+     * if queue.clear() change to queue = new LinkedList<>() then the result will be 84.26%
      */
     public List<String> summaryRanges(int[] nums) {
         LinkedList<Integer> queue = new LinkedList<>();
