@@ -9,6 +9,28 @@ import java.util.*;
 public class LongestSubsequenceWithLimitedSum {
 
     /**
+     * Runtime 5 ms Beats 99.22% of users with Java
+     * Memory 44.94 MB Beats 37.33% of users with Java
+     */
+    public int[] answerQueries1(int[] nums, int[] queries) {
+        Arrays.sort(nums);
+
+        for (int i = 1; i < nums.length; i++) {
+            nums[i] = nums[i] + nums[i - 1];
+        }
+
+        int[] result = new int[queries.length];
+
+        for (int i = 0; i < queries.length; i++) {
+            int pos = Arrays.binarySearch(nums, queries[i]);
+            result[i] = Math.abs(pos + 1);
+        }
+
+        return result;
+    }
+
+
+    /**
      * Runtime 17 ms Beats 9.19% of users with Java
      * Memory 45.28 MB Beats 15.70% of users with Java
      */
