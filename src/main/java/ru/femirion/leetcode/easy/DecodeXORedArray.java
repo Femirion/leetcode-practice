@@ -3,6 +3,8 @@ package ru.femirion.leetcode.easy;
 /**
  * 1720. Decode XORed Array
  * https://leetcode.com/problems/decode-xored-array/description/
+ *
+ * #BitManipulation
  */
 public class DecodeXORedArray {
 

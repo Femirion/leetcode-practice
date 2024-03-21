@@ -3,6 +3,8 @@ package ru.femirion.leetcode.easy;
 /**
  * 190. Reverse Bits
  * https://leetcode.com/problems/reverse-bits/description/
+ *
+ * #BitManipulation
  */
 public class ReverseBits {
 

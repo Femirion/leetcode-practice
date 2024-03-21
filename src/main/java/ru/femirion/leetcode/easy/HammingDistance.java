@@ -3,6 +3,8 @@ package ru.femirion.leetcode.easy;
 /**
  * 461. Hamming Distance
  * https://leetcode.com/problems/hamming-distance/description/
+ *
+ * #BitManipulation
  */
 public class HammingDistance {
 
