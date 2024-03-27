@@ -2,11 +2,41 @@ package ru.femirion.leetcode.easy;
 
 import ru.femirion.leetcode.utils.TreeNode;
 
+import java.util.Stack;
+
 /**
  * 897. Increasing Order Search Tree
  * https://leetcode.com/problems/increasing-order-search-tree/description/
  */
 public class IncreasingOrderSearchTree {
+
+    /**
+     * Runtime 0 ms Beats 100.00% of users with Java
+     * Memory 41.18 MB Beats 49.01% of users with Java
+     */
+    public TreeNode increasingBST1(TreeNode root) {
+        TreeNode result = new TreeNode(0);
+        TreeNode target = result;
+        Stack<TreeNode> stack = new Stack<>();
+
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+
+            TreeNode top = stack.pop();
+
+            result.right = new TreeNode(top.val);
+            result.left = null;
+            result = result.right;
+
+            root = top.right;
+        }
+        return target.right;
+    }
+
+
 
     /**
      * Runtime 1 ms Beats 7.12% of users with Java
