@@ -1,5 +1,6 @@
 package ru.femirion.leetcode.medium;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,6 +36,33 @@ public class GenerateParentheses {
 
         return result.stream().toList();
     }
+
+    /**
+     * Runtime 1 ms Beats 84.41%
+     * Memory 43.43 MB Beats 21.17%
+     */
+    public List<String> generateParenthesis2(int n) {
+        List<String> result = new ArrayList<>(n * 3);
+        generate(result, "", 0, 0, n);
+        return result;
+    }
+
+    private void generate(List<String> list, String str, int open, int close, int max) {
+        if (str.length() == max * 2) {
+            list.add(str);
+            return;
+        }
+
+        if (open < max) {
+            generate(list, str + "(", open + 1, close, max);
+        }
+
+        if (close < open) {
+            generate(list, str + ")", open, close + 1, max);
+        }
+    }
+
+
 
     private boolean validate(String str) {
         int counter = 0;
