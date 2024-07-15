@@ -43,4 +43,39 @@ public class LongestSubarrayOf1SAfterDeletingOneElement {
         }
         return isOnly1 ? nums.length - 1 : maxLength;
     }
+
+    /**
+     * Runtime 2 ms Beats 96.22%
+     * Memory 56.37 MB Beats 80.06%
+     */
+    public int longestSubarray2(int[] nums) {
+        int max = 0;
+
+        int curCount = 0;
+        boolean wasDeleted = false;
+        int countBeforeFirstZero = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) {
+                curCount++;
+                continue;
+            }
+            if (!wasDeleted) {
+                wasDeleted = true;
+                countBeforeFirstZero = curCount;
+                continue;
+            }
+            if (max < curCount) {
+                max = curCount;
+            }
+            curCount = curCount - countBeforeFirstZero;
+            countBeforeFirstZero = curCount;
+
+        }
+
+        if (max < curCount) {
+            max = curCount;
+        }
+
+        return wasDeleted ? max : max - 1;
+    }
 }
