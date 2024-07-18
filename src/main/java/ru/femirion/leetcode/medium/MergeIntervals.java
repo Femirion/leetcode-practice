@@ -81,6 +81,44 @@ public class MergeIntervals {
         return result;
     }
 
+    /**
+     * Runtime 7 ms Beats 97.24%
+     * Memory 46.34 MB Beats 63.31%
+     */
+    public int[][] merge3(int[][] intervals) {
+        if (intervals.length == 1) {
+            return intervals;
+        }
+
+        Arrays.sort(intervals, (a,b) -> a[0] - b[0]);
+
+        int prevBegin = intervals[0][0];
+        int prevEnd = intervals[0][1];
+        int curBegin = 0;
+        int curEnd = 0;
+
+        List<int[]> result = new ArrayList<>();
+        boolean wasAdded = true;
+        for (int i = 1; i <= intervals.length; i++) {
+            curBegin = i == intervals.length ? Integer.MAX_VALUE : intervals[i][0];
+            curEnd = i == intervals.length ? Integer.MAX_VALUE : intervals[i][1];
+
+            if (curBegin <= prevEnd) {
+                prevBegin = Math.min(prevBegin, curBegin);
+                prevEnd = Math.max(prevEnd, curEnd);
+            } else {
+                int[] tmp = new int[2];
+                tmp[0] = prevBegin;
+                tmp[1] = prevEnd;
+                result.add(tmp);
+                prevBegin = curBegin;
+                prevEnd = Math.max(prevEnd, curEnd);
+            }
+        }
+
+        return result.toArray(new int[result.size()][2]);
+    }
+
     private static class Interval {
         private final int start;
         private final int end;
