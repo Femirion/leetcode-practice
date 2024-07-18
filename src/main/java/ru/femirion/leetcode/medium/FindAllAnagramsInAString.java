@@ -1,6 +1,7 @@
 package ru.femirion.leetcode.medium;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,10 +26,8 @@ public class FindAllAnagramsInAString {
             int[] sSubChars = new int[26];
             for (int j = i; j < i + p.length(); j++) {
                 sSubChars[s.charAt(j) - 'a']++;
+                break;
             }
-
-            String tmp = s.substring(i, i + p.length());
-            char tmp1 = s.charAt(i);
 
             boolean isSame = true;
             for (int k = 0; k < 26; k++) {
@@ -42,6 +41,41 @@ public class FindAllAnagramsInAString {
                 result.add(i);
             }
         }
+        return result;
+    }
+
+    /**
+     * Runtime 11 ms Beats 69.21%
+     * Memory 44.70 MB Beats 67.99%
+     */
+    public List<Integer> findAnagrams2(String s, String p) {
+        List<Integer> result = new ArrayList<>();
+        if (s.length() < p.length()) {
+            return result;
+        }
+
+        int[] pChars = new int[26];
+        for (int i = 0; i < p.length(); i++) {
+            pChars[p.charAt(i) - 'a']++;
+        }
+
+        int[] sChars = new int[26];
+        for (int i = 0; i < p.length(); i++) {
+            sChars[s.charAt(i) - 'a']++;
+        }
+
+        if(Arrays.equals(pChars, sChars)) {
+            result.add(0);
+        }
+
+        for (int i = 1; i < s.length() - p.length() + 1; i++) {
+            sChars[s.charAt(i - 1) - 'a']--;
+            sChars[s.charAt(i + p.length() - 1) - 'a']++;
+            if(Arrays.equals(pChars, sChars)) {
+                result.add(i);
+            }
+        }
+
         return result;
     }
 }
