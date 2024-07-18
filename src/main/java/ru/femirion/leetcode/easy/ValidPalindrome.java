@@ -36,4 +36,39 @@ public class ValidPalindrome {
         return true;
     }
 
+    /**
+     * Runtime 2 ms Beats 99.05%
+     * Memory 42.98 MB Beats 64.76%
+     */
+    public boolean isPalindrome2(String s) {
+        int p = 0;
+        int q = s.length() - 1;
+
+        while (p < q) {
+            char pChar = s.charAt(p);
+            char qChar = s.charAt(q);
+            if (!isValidAlphanumericCharacter(pChar)) {
+                p++;
+                continue;
+            }
+            if (!isValidAlphanumericCharacter(qChar)) {
+                q--;
+                continue;
+            }
+            if (Character.toLowerCase(pChar) != Character.toLowerCase(qChar)) {
+                return false;
+            }
+            p++;
+            q--;
+        }
+
+        return true;
+    }
+
+    private boolean isValidAlphanumericCharacter(char cur) {
+        return '0' <= cur && cur <= '9'
+                || 'A' <= cur && cur <= 'Z'
+                || 'a' <= cur && cur <= 'z';
+    }
+
 }
