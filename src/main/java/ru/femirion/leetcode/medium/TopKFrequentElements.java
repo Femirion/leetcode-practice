@@ -9,6 +9,49 @@ import java.util.*;
 public class TopKFrequentElements {
 
     /**
+     * Runtime 13 ms Beats 71.77%
+     * Memory 48.41 MB Beats 57.67%
+     */
+    public int[] topKFrequent2(int[] nums, int k) {
+        Map<Integer, Item> counts = new HashMap<>();
+        PriorityQueue<Item> queue = new PriorityQueue<>((a, b) -> a.count - b.count);
+
+        for (int num : nums) {
+            Item item = counts.getOrDefault(num, new Item(num, 0));
+            item.count++;
+            counts.put(num, item);
+        }
+
+        for (Item item : counts.values()) {
+            queue.offer(item);
+            if (k < queue.size()) {
+                queue.poll();
+            }
+        }
+
+        int[] result = new int[k];
+        for (int i = 0; i < k; i++) {
+            result[i] = queue.poll().elem;
+        }
+
+        return result;
+    }
+
+    private static class Item {
+        private int elem;
+        private int count;
+
+        public Item(int elem, int count) {
+            this.elem = elem;
+            this.count = count;
+        }
+
+        public String toString() {
+            return "e=" + elem + ", count=" + count;
+        }
+    }
+
+    /**
      * Runtime 40 ms Beats 5.04% of users with Java
      * Memory 48.13 MB Beats 71.93% of users with Java
      */
