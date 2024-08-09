@@ -8,6 +8,33 @@ public class SortColors {
 
     /**
      * Runtime 0 ms Beats 100.00%
+     * Memory 41.80 MB Beats 27.11%
+     */
+    public void sortColors2(int[] nums) {
+        int red = 0;
+        int white = 0;
+        int blue = nums.length - 1;
+
+        while (white <= blue) {
+            if (nums[white] == 0) {
+                int tmp = nums[white];
+                nums[white] = nums[red];
+                nums[red] = tmp;
+                red++;
+                white++;
+            } else if (nums[white] == 1) {
+                white++;
+            } else {
+                int tmp = nums[white];
+                nums[white] = nums[blue];
+                nums[blue] = tmp;
+                blue--;
+            }
+        }
+    }
+
+    /**
+     * Runtime 0 ms Beats 100.00%
      * Memory 41.85 MB Beats 26.74%
      */
     public void sortColors(int[] nums) {
