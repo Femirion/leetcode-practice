@@ -9,6 +9,33 @@ import java.util.Arrays;
 public class ShortestUnsortedContinuousSubarray {
 
     /**
+     * Runtime 1 ms Beats 97.51%
+     * Memory 45.82 MB Beats 8.15%
+     */
+    public int findUnsortedSubarray2(int[] nums) {
+        int n = nums.length - 1;
+        int minValue = nums[n];
+        int maxValue = nums[0];
+        int start = -1;
+        int end = -2;
+        for (int i = 1; i <= n; i++) {
+            maxValue = Math.max(maxValue, nums[i]);
+            if (nums[i] < maxValue) {
+                end = i;
+            }
+        }
+
+        for (int i = n - 1; 0 <= i; i--) {
+            minValue = Math.min(minValue, nums[i]);
+            if (minValue < nums[i]) {
+                start = i;
+            }
+        }
+
+        return end - start + 1;
+    }
+
+    /**
      * Runtime 21 ms Beats 5.73%
      * Memory 45.42 MB Beats 29.51%
      */
