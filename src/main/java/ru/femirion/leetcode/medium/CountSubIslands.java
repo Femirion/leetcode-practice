@@ -10,6 +10,60 @@ import java.util.List;
 public class CountSubIslands {
 
     /**
+     * Runtime 13 ms Beats 100.00%
+     * Memory 83.66 MB Beats 61.47%
+     */
+    private boolean isIsland;
+    public int countSubIslands2(int[][] grid1, int[][] grid2) {
+        int result = 0;
+        for (int i = 0; i < grid2.length; i++) {
+            for (int j = 0; j < grid2[i].length; j++) {
+                if (grid2[i][j] == 1) {
+                    grid2[i][j] = 0;
+                    isIsland = grid1[i][j] == 1;
+                    dfs(i, j, grid2, grid1);
+                    if (isIsland) {
+                        result++;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private void dfs(int i, int j, int[][] grid2, int[][] grid1) {
+        if (0 <= i - 1) {
+            if (grid2[i - 1][j] == 1) {
+                grid2[i - 1][j] = 0;
+                isIsland = isIsland && grid1[i - 1][j] == 1;
+                dfs(i - 1, j, grid2, grid1);
+            }
+        }
+        if (0 <= j - 1) {
+            if (grid2[i][j - 1] == 1) {
+                grid2[i][j - 1] = 0;
+                isIsland = isIsland && grid1[i][j - 1] == 1;
+                dfs(i, j - 1, grid2, grid1);
+            }
+        }
+        if (i + 1 < grid2.length) {
+            if (grid2[i + 1][j] == 1) {
+                grid2[i + 1][j] = 0;
+                isIsland = isIsland && grid1[i + 1][j] == 1;
+                dfs(i + 1, j, grid2, grid1);
+            }
+        }
+        if (j + 1 < grid2[i].length) {
+            if (grid2[i][j + 1] == 1) {
+                grid2[i][j + 1] = 0;
+                isIsland = isIsland && grid1[i][j + 1] == 1;
+                dfs(i, j + 1, grid2, grid1);
+            }
+        }
+    }
+
+    /**
      * Runtime 22 ms Beats 56.06%
      * Memory 93.58 MB Beats 5.03%
      */
