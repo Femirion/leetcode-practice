@@ -33,4 +33,30 @@ public class MakeTwoArraysEqualByReversingSubarrays {
         }
         return nums.isEmpty();
     }
+
+    /**
+     * Runtime 1 ms Beats 99.98%
+     * Memory 43.84 MB Beats 96.40%
+     */
+    public boolean canBeEqual1(int[] target, int[] arr) {
+        int[] nums = new int[1001];
+
+        for (int t : target) {
+            nums[t]++;
+        }
+
+        for (int a : arr) {
+            if (nums[a] == 0) {
+                return false;
+            } else {
+                nums[a]--;
+            }
+        }
+        for (int n : nums) {
+            if (n != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
