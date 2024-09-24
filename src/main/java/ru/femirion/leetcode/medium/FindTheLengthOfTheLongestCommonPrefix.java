@@ -9,6 +9,52 @@ import java.util.Stack;
 public class FindTheLengthOfTheLongestCommonPrefix {
 
     /**
+     * Runtime 41 ms Beats 77.66%
+     * Memory 55.06 MB Beats 92.46%
+     */
+    public int longestCommonPrefix2(int[] arr1, int[] arr2) {
+        Trie trie = new Trie();
+        for (int num : arr1) {
+            fillTrie2(trie, num);
+        }
+
+        int maxPrefix = 0;
+        int curPrefix = 0;
+        for (int num : arr2) {
+            Trie curTrie = trie;
+            for (char c : Integer.toString(num).toCharArray()) {
+                int n = c - '0';
+                if (curTrie.nodes[n] != null) {
+                    curPrefix++;
+                    curTrie = curTrie.nodes[n];
+                } else {
+                    break;
+                }
+            }
+            maxPrefix = Math.max(maxPrefix, curPrefix);
+            curPrefix = 0;
+        }
+        return maxPrefix;
+    }
+
+    private Trie fillTrie2(Trie trie, int number) {
+        if (number == 0) {
+            Trie t = new Trie();
+            trie.nodes[0] = t;
+            return trie;
+        }
+        Trie curTrie = trie;
+        for (char c : Integer.toString(number).toCharArray()) {
+            Trie t = new Trie();
+            if (curTrie.nodes[c - '0'] == null) {
+                curTrie.nodes[c - '0'] = t;
+            }
+            curTrie = curTrie.nodes[c -'0'];
+        }
+        return trie;
+    }
+
+    /**
      * Runtime 150 ms Beats 28.46%
      * Memory 55.26 MB Beats 84.54%
      */
