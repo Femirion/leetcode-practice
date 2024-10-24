@@ -41,4 +41,30 @@ public class ConstructBinarySearchTreeFromPreorderTraversal {
 
         return head;
     }
+
+    private int curIdx = 0;
+
+    /**
+     * Runtime 0 ms Beats 100.00%
+     * Memory 42.05 MB Beats 7.76%
+     */
+    public TreeNode bstFromPreorder2(int[] preorder) {
+        return buildTree(preorder, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private TreeNode buildTree(int[] preorder, int min, int max) {
+        if (curIdx == preorder.length) {
+            return null;
+        }
+        int curVal = preorder[curIdx];
+        if (curVal < min || max < curVal) {
+            return null;
+        }
+
+        curIdx++;
+        TreeNode node = new TreeNode(curVal);
+        node.left = buildTree(preorder, min, curVal);
+        node.right = buildTree(preorder, curVal, max);
+        return node;
+    }
 }
