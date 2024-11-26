@@ -1,10 +1,36 @@
 package ru.femirion.leetcode.medium;
 
+import java.util.Arrays;
+
 /**
  * 45. Jump Game II
  * https://leetcode.com/problems/jump-game-ii/description/
  */
 public class JumpGameII {
+
+    /**
+     * Runtime 50 ms Beats 12.47%
+     * Memory 45.92 MB Beats 6.34%
+     */
+    public int jump2(int[] nums) {
+        int[] dp = new int[nums.length];
+        Arrays.fill(dp, 10000001);
+
+        dp[nums.length - 1] = 0;
+
+        int idx = nums.length - 2;
+
+        while (0 <= idx) {
+            for (int i = idx + 1; i <= Math.min(idx + nums[idx], nums.length - 1); i++) {
+                dp[idx] = Math.min(dp[idx], dp[i]);
+            }
+            dp[idx]++;
+            idx--;
+        }
+
+
+        return dp[0];
+    }
 
     /**
      * Runtime 1 ms Beats 99.12%
