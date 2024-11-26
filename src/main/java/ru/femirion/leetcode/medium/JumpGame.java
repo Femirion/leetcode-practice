@@ -7,6 +7,31 @@ package ru.femirion.leetcode.medium;
 public class JumpGame {
 
     /**
+     * Runtime 90 ms Beats 13.94%
+     * Memory 45.41 MB Beats 73.25%
+     */
+    public boolean canJump2(int[] nums) {
+        boolean[] dp = new boolean[nums.length];
+
+        dp[nums.length - 1] = true;
+
+        int idx = nums.length - 2;
+
+        while (0 <= idx) {
+            for (int i = idx + 1; i <= idx + nums[idx]; i++) {
+                if (dp[i]) {
+                    dp[idx] = true;
+                    break;
+                }
+            }
+            idx--;
+        }
+
+
+        return dp[0];
+    }
+
+    /**
      * Runtime 3 ms Beats 48.04%
      * Memory 45.92 MB Beats 15.63%
      */
