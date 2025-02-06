@@ -9,6 +9,44 @@ import java.util.Map;
  */
 public class TargetSum {
 
+    private Integer[][] dp;
+
+    /**
+     * Runtime 8 ms Beats 77.80%
+     * Memory 44.74 MB Beats 30.15%
+     */
+    public int findTargetSumWays3(int[] nums, int target) {
+        int total = 0;
+        for (int num : nums) {
+            total = total + num;
+        }
+        dp = new Integer[nums.length + 1][total * 2 + 1];
+        return backtracking(nums, 0, target, 0, 0, total);
+    }
+
+    private int backtracking(int[] nums, int idx, int target, int curSum, int count, int total) {
+        if (nums.length <= idx) {
+            if (curSum == target) {
+                return count + 1;
+            } else {
+                return count;
+            }
+        }
+
+        if (dp[idx][curSum + total] != null) {
+            return dp[idx][curSum + total];
+        }
+
+        int tmpMinus = -nums[idx];
+        int tmpPlus = nums[idx];
+
+        int minusResult = backtracking(nums, idx + 1, target, curSum + tmpMinus, count, total);
+        int plusResult = backtracking(nums, idx + 1, target, curSum + tmpPlus, count, total);
+        dp[idx][curSum + total] = minusResult + plusResult;
+
+        return dp[idx][curSum + total];
+    }
+
     /**
      * Runtime 647 ms Beats 11.57%
      * Memory 41.68 MB Beats 61.92%
