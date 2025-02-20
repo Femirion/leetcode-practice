@@ -11,6 +11,63 @@ import java.util.List;
 public class MaximumMatrixSum {
 
     /**
+     * Runtime 6 ms Beats 85.54%
+     * Memory 55.06 MB Beats 68.33%
+     */
+    public long maxMatrixSum2(int[][] matrix) {
+        int n = matrix.length;
+
+        long positiveSum = 0;
+        long sum = 0;
+        int negativeCount = 0;
+        boolean hasZero = false;
+        int minPositive = Integer.MAX_VALUE;
+        int maxNegative = Integer.MIN_VALUE;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                int curVal = matrix[i][j];
+
+                positiveSum = positiveSum + Math.abs(curVal);
+
+                if (0 < curVal) {
+                    minPositive = Math.min(curVal, minPositive);
+                    sum = sum + curVal;
+                    continue;
+                }
+
+                if (curVal == 0) {
+                    hasZero = true;
+                    continue;
+                }
+
+                negativeCount++;
+
+                if (maxNegative < curVal) {
+                    if (maxNegative == Integer.MIN_VALUE) {
+                        maxNegative = 0;
+                    }
+                    sum = sum + (-maxNegative * 2) + curVal;
+                    maxNegative = curVal;
+                } else {
+                    sum = sum - curVal;
+                }
+            }
+        }
+
+        if (negativeCount == 0 || negativeCount % 2 == 0 || hasZero) {
+            return positiveSum;
+        }
+
+        if (minPositive < Math.abs(maxNegative)) {
+            return sum + (-maxNegative * 2) - minPositive * 2;
+        } else {
+            return sum;
+        }
+    }
+
+
+    /**
      * Runtime 49 ms Beats 5.65%
      * Memory 57.61 MB Beats 7.62%
      */
